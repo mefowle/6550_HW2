@@ -1,0 +1,11 @@
+g++: error: a02.cpp: No such file or directory
+--------------------------------------------------------------------------
+mpiexec was unable to launch the specified application as it could not access
+or execute an executable:
+
+Executable: ./a02.x
+Node: node1573
+
+while attempting to start process rank 0.
+--------------------------------------------------------------------------
+10 total processes failed to start
