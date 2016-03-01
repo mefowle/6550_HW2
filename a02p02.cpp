@@ -6,29 +6,27 @@
  * Description	: MPI Point-to-Point Communication
  *
  */
-
 #include <iostream>
+#include <cstdlib>
+
 #include "mpi.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]){
-	char message[20];
-	int myRank;
-	//MPI_Status status;
-	//MPI_Init( &argc, &argv);
-	//MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
-/*
-	if (myRank == 0){
-		strcpy(message, "Hello, there");
-		MPI_Send(message, strlen(message)+1, MPI_CHAR, 1, 99, MPI_COMM_WORLD);
-	}
-	else if (myRank == 1){
-		MPI_Recv(message, 20, MPI_CHAR, 0, 99, MPI_COMM_WORLD, &status);
-		cout << "received :" << message << "\n";
-	}
-	MPI_Finalize();*/
-	
+
+  int ierr, my_id, num_procs;
+
+  ierr = MPI_Init(&argc, &argv);
+  ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+  ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+
+  cout << "Hello from : " << my_id << endl;
+
+  ierr = MPI_Finalize();
+  return EXIT_SUCCESS;
+
+}
 	cout << "test";
 	
 	return 0;
