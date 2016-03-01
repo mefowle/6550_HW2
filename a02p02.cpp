@@ -27,7 +27,3 @@ int main(int argc, char *argv[]){
   return EXIT_SUCCESS;
 
 }
-	cout << "test";
-	
-	return 0;
-}
