@@ -9,6 +9,6 @@
 cd $PBS_O_WORKDIR
 module load gcc/4.8.1
 module load openmpi/1.6.4
-mpicxx a02p02.cpp -o a02.x
+mpicxx a02p02.cpp -o a02
 
-mpiexec -n 10 -machinefile $PBS_NODEFILE ./a02.x
+mpirun -n 2 ./a02 > text.txt
