@@ -49,7 +49,7 @@ int main (int argc, char *argv[]){
 	for(int i = 0; i < rows; i++){
 		for(int j = 0; j < columns; j++){
 			if(gridStart[i][j] == false){
-				cout << " ";
+				cout << "  ";
 			}
 			else{
 				cout << gridStart[i][j] << " ";
@@ -63,7 +63,7 @@ int main (int argc, char *argv[]){
 	
 	int neighbors;
 	
-	for(int count = 0; count < 3; count++){
+	for(int count = 0; count < 10; count++){
 	
 		for(int i = 1; i < rows -1; i++){
 			for(int j = 1; j < columns -1; j++){
@@ -100,7 +100,7 @@ int main (int argc, char *argv[]){
 			for(int i = 0; i < rows; i++){
 				for(int j = 0; j < columns; j++){
 					if(gridStart[i][j] == false){
-						cout << " ";
+						cout << "  ";
 					}
 					else{
 						cout << gridStart[i][j] << " ";
