@@ -63,7 +63,7 @@ int main (int argc, char *argv[]){
 	
 	int neighbors;
 	
-	for(int count = 0; count < 10; count++){
+	for(int count = 0; count < 20; count++){
 	
 		for(int i = 1; i < rows -1; i++){
 			for(int j = 1; j < columns -1; j++){
