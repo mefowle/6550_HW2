@@ -26,17 +26,24 @@ int main(int argc, char** argv) {
   
   double start, end, total;
   
-  for(int i = 1; i < pow(2,5); i = 2 * i) {
+  for(int i = 1; i < pow(2,31); i = 2 * i) {
 	  char *ptr = new char[i];
 	
 		start = MPI_Wtime();
 	  
-
+    if (world_rank == ping_pong_count % 2) {
+      // Increment the ping pong count before you send it
+      ping_pong_count++;
       MPI_Send(&ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD);
-
+      
+	  
+	  printf("%d sent %d  bytes to %d\n",
+             world_rank, ptr, partner_rank);
+    } else {
       MPI_Recv(&ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD,
                MPI_STATUS_IGNORE);
-
+      printf("%d received %d bytes from %d\n",
+             world_rank, ptr, partner_rank);
     }
 	
 		end = MPI_Wtime();
