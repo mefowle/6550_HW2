@@ -2,6 +2,7 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cmath>
 
 int main(int argc, char** argv) {
   const int PING_PONG_LIMIT = 10;
@@ -26,21 +27,21 @@ int main(int argc, char** argv) {
   
   double start, end, total;
   
-  while (ping_pong_count < PING_PONG_LIMIT) {
-	  char *ptr = (char *) malloc(sizeof(char*)*ping_pong_count);
+  for(int i = 1; i < pow(2,4); i = 2 * i ){
+	  char *ptr = new  char[i];
 	
 		start = MPI_Wtime();
 	  
     if (world_rank == ping_pong_count % 2) {
       // Increment the ping pong count before you send it
       ping_pong_count++;
-      MPI_Send(&ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD);
+      MPI_Send(ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD);
       
 	  
 	  printf("%d sent %d  bytes to %d\n",
              world_rank, ptr, partner_rank);
     } else {
-      MPI_Recv(&ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD,
+      MPI_Recv(ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD,
                MPI_STATUS_IGNORE);
       printf("%d received %d bytes from %d\n",
              world_rank, ptr, partner_rank);
