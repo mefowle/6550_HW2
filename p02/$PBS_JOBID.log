@@ -1,16 +1,4 @@
 p02.cpp: In function ‘int main(int, char**)’:
-p02.cpp:16:30: error: expected ‘)’ before ‘;’ token
-     LOOP_LIMIT = atoi(argv[1];
-                              ^
-p02.cpp:47:20: error: expected ‘)’ before ‘;’ token
-     while(int j = 0; j < LOOP_LIMIT; j++){
-                    ^
-p02.cpp:47:22: error: ‘j’ was not declared in this scope
-     while(int j = 0; j < LOOP_LIMIT; j++){
-                      ^
-p02.cpp:47:41: error: expected ‘;’ before ‘)’ token
-     while(int j = 0; j < LOOP_LIMIT; j++){
-                                         ^
-p02.cpp:61:5: error: ‘bandwith’ was not declared in this scope
-     bandwith = 2*(i/total); 
-     ^
+p02.cpp:46:26: error: expression in new-declarator must have integral or enumeration type
+     char *ptr = new char[i]; 
+                          ^

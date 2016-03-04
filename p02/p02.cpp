@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     LOOP_LIMIT = 1000;
   }
   else{
-    LOOP_LIMIT = atoi(argv[1];
+    LOOP_LIMIT = atoi(argv[1]);
   }
  
 	
@@ -37,30 +37,31 @@ int main(int argc, char** argv) {
   
   double start, end, total;
   double bandwidth;  
+    
 
-  for(int i = 1; i < pow(2,10); i = 2 * i) {
-    
-//    cout << i << " ";
-    
+  for(double i = 1; i < pow(2,30); i = 2 * i) {
+   
+ 
     start = MPI_Wtime();
-
-    while(int j = 0; j < LOOP_LIMIT; j++){
-      char *ptr = new char[i];
-	
+    char *ptr = new char[(int)i];	
+    for(int j = 0; j < LOOP_LIMIT; j++){
+     
       MPI_Send(ptr, i, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD);
 	
       MPI_Recv(ptr, i, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD,
-             MPI_STATUS_IGNORE);
-	
-      delete[] ptr;
+             MPI_STATUS_IGNORE);    
     }
-    
+
+    delete [] ptr;
+
     end = MPI_Wtime();
     total = end - start;
     
-    bandwith = 2*(i/total); 
-
-    cout << total << " " << bandwidth << "\n";
+    bandwidth = 2*(i/total); 
+   
+    if(partner_rank == 1){ 
+      cout << i << " " << total << " " << bandwidth << "\n";
+    }
   }   
   
   MPI_Finalize();

@@ -11,4 +11,4 @@ module load gcc/4.8.1
 module load openmpi/1.6.4
 mpicxx p02.cpp -o a02
 
-mpirun -n 2 ./a02 10 > text.txt
+mpirun -n 2 ./a02 1000 > text.txt
