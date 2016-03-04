@@ -9,8 +9,8 @@ bool determineStatus(int x, bool life);
 
 int main (int argc, char *argv[]){
   
-	int rows = atoi(argv[1]);
-	int columns = atoi(argv[2]);
+	int rows = atoi(argv[1])+2;
+	int columns = atoi(argv[2]+2);
 	char * seed = argv[3];
 
 	vector<int> list;
@@ -26,15 +26,15 @@ int main (int argc, char *argv[]){
 	myfile.open(seed);
 	int input;
 	
-	for(int i = 0; i < rows; i++){
-		for(int j = 0; j < columns; j++){
+	for(int i = 1; i < rows-1; i++){
+		for(int j = 1; j < columns-1; j++){
 			gridStart[i][j] = false;
 			gridEnd[i][j] = false;
 		}
 	}	
 	
-	for(int i = 0; i < rows; i++){
-		for(int j = 0; j < columns; j++){
+	for(int i = 1; i < rows-1; i++){
+		for(int j = 1; j < columns-1; j++){
 			myfile >> input;
 			if(input == 1){
 				gridStart[i][j] = true;
@@ -46,8 +46,8 @@ int main (int argc, char *argv[]){
 	}	
 	
 	/*Print out of gridStart*/
-	for(int i = 0; i < rows; i++){
-		for(int j = 0; j < columns; j++){
+	for(int i = 1; i < rows-1; i++){
+		for(int j = 1; j < columns-1; j++){
 			if(gridStart[i][j] == false){
 				cout << "  ";
 			}
@@ -87,8 +87,8 @@ int main (int argc, char *argv[]){
 		}	
 		
 		
-		for(int i = 0; i < rows; i++){
-			for(int j = 0; j < columns; j++){
+		for(int i = 1; i < rows-1; i++){
+			for(int j = 1; j < columns-1; j++){
 				gridStart[i][j] = gridEnd[i][j];
 			}
 		}
@@ -97,8 +97,8 @@ int main (int argc, char *argv[]){
 		
 			cout << "\n\n";
 			/*Print out of gridStart*/
-			for(int i = 0; i < rows; i++){
-				for(int j = 0; j < columns; j++){
+			for(int i = 1; i < rows-1; i++){
+				for(int j = 1; j < columns-1; j++){
 					if(gridStart[i][j] == false){
 						cout << "  ";
 					}
