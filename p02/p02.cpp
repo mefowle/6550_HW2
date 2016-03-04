@@ -1,11 +1,22 @@
-
-#include <mpi.h>
+#include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <cmath>
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, char** argv) {
-  
-  const int LOOP_LIMIT = argv[1];
+ 
+  int LOOP_LIMIT;
+  if(argc < 2){
+    LOOP_LIMIT = 1000;
+  }
+  else{
+    LOOP_LIMIT = atoi(argv[1];
+  }
+ 
+	
 
   // Initialize the MPI environment
   MPI_Init(NULL, NULL);
@@ -25,23 +36,32 @@ int main(int argc, char** argv) {
   int partner_rank = (world_rank + 1) % 2;
   
   double start, end, total;
-  
-  for(int i = 1; i < pow(2,5); i = 2 * i) {
-	  char *ptr = new char[i];
+  double bandwidth;  
+
+  for(int i = 1; i < pow(2,10); i = 2 * i) {
+    
+//    cout << i << " ";
+    
+    start = MPI_Wtime();
+
+    while(int j = 0; j < LOOP_LIMIT; j++){
+      char *ptr = new char[i];
 	
-		start = MPI_Wtime();
-	  
-
-      MPI_Send(&ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD);
-
-      MPI_Recv(&ptr, ping_pong_count, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD,
-               MPI_STATUS_IGNORE);
-
+      MPI_Send(ptr, i, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD);
+	
+      MPI_Recv(ptr, i, MPI_CHAR, partner_rank, 0, MPI_COMM_WORLD,
+             MPI_STATUS_IGNORE);
+	
+      delete[] ptr;
     }
-	
-		end = MPI_Wtime();
-		total = end - start;
-		printf("total time: %f\n", total);
-  }
+    
+    end = MPI_Wtime();
+    total = end - start;
+    
+    bandwith = 2*(i/total); 
+
+    cout << total << " " << bandwidth << "\n";
+  }   
+  
   MPI_Finalize();
 }

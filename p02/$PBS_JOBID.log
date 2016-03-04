@@ -1,68 +1,16 @@
-a02p02.cpp: In function ‘int main(int, char**)’:
-a02p02.cpp:23:10: error: ‘size’ cannot appear in a constant-expression
-   bitset<size> message;
-          ^
-a02p02.cpp:23:14: error: template argument 1 is invalid
-   bitset<size> message;
-              ^
-a02p02.cpp:23:23: error: invalid type in declaration before ‘;’ token
-   bitset<size> message;
-                       ^
-a02p02.cpp:26:25: error: invalid conversion from ‘int’ to ‘char*’ [-fpermissive]
-   strcpy(message,argv[1]);
-                         ^
-In file included from /software/openmpi/1.6.4/include/openmpi/ompi/mpi/cxx/functions_inln.h:22:0,
-                 from /software/openmpi/1.6.4/include/openmpi/ompi/mpi/cxx/mpicxx.h:289,
-                 from /software/openmpi/1.6.4/include/mpi.h:2087,
-                 from a02p02.cpp:3:
-/usr/include/string.h:128:14: error:   initializing argument 1 of ‘char* strcpy(char*, const char*)’ [-fpermissive]
- extern char *strcpy (char *__restrict __dest, __const char *__restrict __src)
-              ^
-a02p02.cpp:27:55: error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
-   MPI_Send(message, i, MPI_BYTE, 1, 99, MPI_COMM_WORLD);
-                                                       ^
-In file included from a02p02.cpp:3:0:
-/software/openmpi/1.6.4/include/mpi.h:1384:20: error:   initializing argument 1 of ‘int MPI_Send(void*, int, MPI_Datatype, int, int, MPI_Comm)’ [-fpermissive]
- OMPI_DECLSPEC  int MPI_Send(void *buf, int count, MPI_Datatype datatype, int dest,
+p02.cpp: In function ‘int main(int, char**)’:
+p02.cpp:16:30: error: expected ‘)’ before ‘;’ token
+     LOOP_LIMIT = atoi(argv[1];
+                              ^
+p02.cpp:47:20: error: expected ‘)’ before ‘;’ token
+     while(int j = 0; j < LOOP_LIMIT; j++){
                     ^
-a02p02.cpp:31:65: error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
-   MPI_Recv(message, 20, MPI_CHAR, 0, 99, MPI_COMM_WORLD, &status);
-                                                                 ^
-In file included from a02p02.cpp:3:0:
-/software/openmpi/1.6.4/include/mpi.h:1350:20: error:   initializing argument 1 of ‘int MPI_Recv(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Status*)’ [-fpermissive]
- OMPI_DECLSPEC  int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source,
-                    ^
-[node0312:29722] *** An error occurred in MPI_Send
-[node0312:29722] *** on communicator MPI_COMM_WORLD
-[node0312:29722] *** MPI_ERR_RANK: invalid rank
-[node0312:29722] *** MPI_ERRORS_ARE_FATAL: your MPI job will now abort
---------------------------------------------------------------------------
-mpirun has exited due to process rank 0 with PID 29722 on
-node node0312 exiting improperly. There are two reasons this could occur:
-
-1. this process did not call "init" before exiting, but others in
-the job did. This can cause a job to hang indefinitely while it waits
-for all processes to call "init". By rule, if one process calls "init",
-then ALL processes must call "init" prior to termination.
-
-2. this process called "init", but exited without calling "finalize".
-By rule, all processes that call "init" MUST call "finalize" prior to
-exiting or it will be considered an "abnormal termination"
-
-This may have caused other processes in the application to be
-terminated by signals sent by mpirun (as reported here).
---------------------------------------------------------------------------
-ere are two reasons this could occur:
-
-1. this process did not call "init" before exiting, but others in
-the job did. This can cause a job to hang indefinitely while it waits
-for all processes to call "init". By rule, if one process calls "init",
-then ALL processes must call "init" prior to termination.
-
-2. this process called "init", but exited without calling "finalize".
-By rule, all processes that call "init" MUST call "finalize" prior to
-exiting or it will be considered an "abnormal termination"
-
-This may have caused other processes in the application to be
-terminated by signals sent by mpirun (as reported here).
--------------------------------------------------------------------
+p02.cpp:47:22: error: ‘j’ was not declared in this scope
+     while(int j = 0; j < LOOP_LIMIT; j++){
+                      ^
+p02.cpp:47:41: error: expected ‘;’ before ‘)’ token
+     while(int j = 0; j < LOOP_LIMIT; j++){
+                                         ^
+p02.cpp:61:5: error: ‘bandwith’ was not declared in this scope
+     bandwith = 2*(i/total); 
+     ^
