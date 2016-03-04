@@ -2,6 +2,7 @@
 #include <stdlib.h> 
 #include <vector>
 #include <fstream>
+#include "mpi.h"
 
 using namespace std;
 
@@ -18,6 +19,25 @@ int main (int argc, char *argv[]){
 	for(int i = 4; i < argc; i++){
 		list.push_back(atoi(argv[i]));  
 	}
+	
+	int divisor;
+	if((rows+2)% 3 == 0){
+		divisor = 3;
+	}
+	else{
+		divisor = 2;
+	}
+	
+	MPI_Datatype newtype;
+	int sizes[2] = {(rows + 2), (columns + 2)};
+	int subsizes[2] = {(((rows + 2)/divisor)+2), (columns + 2)};
+	int starts[2] = {1,1};
+	
+	MPI_Type_create_subarray(2, sizes, subsizes, starts, MPI_ORDER_C, MPI_INT, &newtype);
+   MPI_Type_commit(&newtype);
+
+	MPI_Send(&(global[1][1]), 1, newtype, dest, tag, MPI_COMM_WORLD);
+   
 
 	bool gridStart[rows][columns];
 	bool gridEnd[rows][columns];
